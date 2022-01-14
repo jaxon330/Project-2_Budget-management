@@ -1,0 +1,171 @@
+
+   <%- include('./partials/header.ejs') %>
+
+      <!-- Total amount of expenses, income and balance -->
+   <nav class="navbar navbar-expand-md  navbar-light bg-light my-2">
+    <a href="/expenses/new"><button class="btn btn-primary btn-lg mx-auto" >+New</button></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-center" id="navbarNavAltMarkup">
+        <div class="d-inline mx-auto">
+            <p class="totalExpenses">Total expenses</p>
+            <h3 class="totalExpenses">-$<%= totalExpenses %>  </h3>
+        </div>
+        <div class="d-inline mx-auto">
+            <p class="totalIncome">Total Income</p>
+            <h3 class="totalIncome">+$<%= incomes %></h3>
+        </div>
+            
+
+        <div class="d-inline mx-auto">
+            <p class="balance">Balance</p>
+            <h3  class="balance">$<%= balance %> </h3>
+        </div>
+    </div>
+  </nav>
+
+   
+
+    <!-- <div class="row totalBudget text-center mx-0 mb-2">
+        <div class="col-sm">
+            <a href="/expenses/new"><button class="btn btn-primary btn-lg  mt-3 w-75" >+New</button></a>
+        </div>
+        <div class="col-sm">
+            <p class="totalExpenses">Total expenses</p>
+            <h3 class="totalExpenses">-$<%= totalExpenses %>  </h3>
+        </div>
+        <div class="col-sm">
+            <p class="totalIncome">Total Income</p>
+            <h3 class="totalIncome">+$<%= incomes %></h3>
+        </div>
+        <div class="col-sm">
+            <p class="balance">Balance</p>
+            <h3  class="balance">$<%= balance %> </h3>
+        </div>
+    </div> -->
+
+    
+    <!-- <div class="mx-0  py-1 horizontalLine">
+
+    </div> -->
+
+        <!-- filter by period -->
+        <div class="row text-center filterByPeriod mx-0">
+            <div class="col-sm filterColumn py-2"  id="24h">
+                <a class="filterLinkTag" href="/expenses/filter/1">24H</a>
+            </div>
+
+            <div class="col-sm filterColumn py-2">
+                <a class="filterLinkTag" href="/expenses/filter/7">Week</a>
+            </div>
+            <div class="col-sm filterColumn py-2">
+                <div class="dropdown">
+                    <a class=" dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     Month
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="/expenses/month/01">January</a>
+                      <a class="dropdown-item" href="/expenses/month/02">February</a>
+                      <a class="dropdown-item" href="/expenses/month/03">March</a>
+                      <a class="dropdown-item" href="/expenses/month/04">April</a>
+                      <a class="dropdown-item" href="/expenses/month/05">May</a>
+                      <a class="dropdown-item" href="/expenses/month/06">June</a>
+                      <a class="dropdown-item" href="/expenses/month/07">July</a>
+                      <a class="dropdown-item" href="/expenses/month/08">August</a>
+                      <a class="dropdown-item" href="/expenses/month/09">September</a>
+                      <a class="dropdown-item" href="/expenses/month/10">October</a>
+                      <a class="dropdown-item" href="/expenses/month/11">November</a>
+                      <a class="dropdown-item" href="/expenses/month/12">December</a>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-sm filterColumn py-2">
+                <div class="dropdown">
+                    <a class="filterLinkTag dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     Year
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="/expenses/year/2021">2021</a>
+                      <a class="dropdown-item" href="/expenses/year/2022">2022</a>
+                
+                    </div>
+                  </div>
+            </div>
+            <div class="col-sm filterColumn py-2">
+                <a class="filterLinkTag" href="/expenses">All Time</a>
+                <!-- <form action="/expenses/all-time" method="post">
+                    <button class="btn btn-secondary" type="submit">All Time</button>
+                </form> -->
+                </div>
+        </div>
+
+        <div class="row text-center mx-0 mb-2">
+            <div class="col-sm mx-0  py-1 horizontalLine"></div>
+            <div class="col-sm mx-0  py-1 horizontalLine"></div>
+            <div class="col-sm mx-0  py-1 horizontalLine"></div>
+            <div class="col-sm mx-0  py-1 horizontalLine"></div>
+            <div class="col-sm mx-0  py-1 horizontalLine"></div>
+        </div>
+
+    <!-- <script>
+        let filterContainer = document.querySelector('.filterByPeriod')
+        let horizontalLines = document.querySelectorAll('.horizontalLine')
+        let filterColumn = filterContainer.getElementsByClassName('filterColumn')
+
+        for (let i = 0; i < filterColumn.length; i++) {
+            filterColumn[i].addEventListener('click', function() {
+                let current = document.getElementsByClassName('active')
+                current[0].className = current[0].className.replace('active', '')
+                this.className += 'active'
+            })
+            
+        }
+    </script> -->
+        
+
+<!-- List of expenses and incomes -->
+     <table class="table table-hover">
+         <thead >
+            <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Amount</th>
+            </tr>
+         </thead>
+         <tbody>
+             <% if (expenses) { %> 
+            <% expenses.forEach(expense => { %>
+                <% const formattedDate = expense.date.toISOString().split('T')[0] %> 
+                 <!-- const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }; 
+                 const formattedDate = expense.date.toLocaleDateString(undefined, options)  -->
+                <% if(expense.category === 'Income') { %> 
+                    
+                <tr>
+                    <td><a href="/expenses/<%= expense.id %>"><%= formattedDate %> </a></td>
+                    <td><a href="/expenses/<%= expense.id %>"><%= expense.category %> </a></td>
+                    <td><a href="/expenses/<%= expense.id %>" style="color: #07c907;">+$<%= expense.amount %> </a></td>
+                    
+                </tr>
+                <% } else { %>
+                    <tr >
+
+                        <td><a href="/expenses/<%= expense.id %>"><%= formattedDate %> </a></td>
+                        <td><a href="/expenses/<%= expense.id %>"><%= expense.category %> </a></td>
+                        <td><a href="/expenses/<%= expense.id %>" style="color: red;">-$<%= expense.amount %> </a></td>
+
+                    </tr>   
+                    <% } %>
+            <% }) %>
+            <% } else { %>
+                <h1>No expenses</h1>
+                <% } %>
+
+
+         </tbody>
+
+    </table> 
+
+    <%- include('./partials/footer.ejs') %>
+
+

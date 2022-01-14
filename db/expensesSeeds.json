@@ -1,0 +1,129 @@
+[
+    {
+        "date" : "2021-11-30",
+        "category" : "Communication",
+        "amount" : 101.33,
+        "description" : "Phone, cell phone"
+},
+{
+        "date" : "2021-12-02",
+        "category" : "Income",
+        "amount" : 964,
+        "description" : "TJ Transportation"
+},
+{
+        "date" : "2021-12-03",
+        "category" : "Food & Drinks",
+        "amount" : 22.8,
+        "description" : "Restaurant Troy"
+},
+{
+        "date" : "2021-12-07",
+        "category" : "Transportation",
+        "amount" : 19.99,
+        "description" : "Taxe Uber"
+},
+{
+        "date" : "2021-12-07",
+        "category" : "Vehicle",
+        "amount" : 604.9,
+        "description" : "Service: Tint and remote starter"
+},
+{
+        "date" : "2021-12-09",
+        "category" : "Income",
+        "amount" : 850.5,
+        "description" : "TJ Transportation"
+},
+{
+        "date" : "2021-12-09",
+        "category" : "Vehicle",
+        "amount" : 25.51,
+        "description" : "Fuel"
+},
+{
+        "date" : "2021-12-09",
+        "category" : "Grocery",
+        "amount" : 45.06,
+        "description" : "Walmart"
+},
+{
+        "date" : "2021-12-10",
+        "category" : "Grocery",
+        "amount" : 52.27,
+        "description" : "Schnucks"
+},
+{
+        "date" : "2021-12-25",
+        "category" : "Food & Drinks",
+        "amount" : 113,
+        "description" : "Walmart Grocery"
+},
+{
+        "date" : "2021-12-28",
+        "category" : "Life & Family ",
+        "amount" : 50,
+        "description" : "Entertainment"
+},
+{
+        "date" : "2021-12-28",
+        "category" : "Food & Drinks",
+        "amount" : 64.04,
+        "description" : "Restaurant"
+},
+{
+        "date" : "2021-12-27",
+        "category" : "Vehicle",
+        "amount" : 27.5,
+        "description" : "Fuel"
+},
+{
+        "date" : "2021-12-27",
+        "category" : "Shopping",
+        "amount" : 145,
+        "description" : "Gifts, joy"
+},
+{
+        "date" : "2021-12-23",
+        "category" : "Income",
+        "amount" : 1000,
+        "description" : ""
+},
+{
+        "date" : "2021-11-26",
+        "category" : "Shopping",
+        "amount" : 54.37,
+        "description" : "Clothes & shoes"
+},
+{
+
+        "date" : "2021-11-18",
+        "category" : "Life & Family ",
+        "amount" : 31.05,
+        "description" : "Hair cut"
+},
+{
+        "date" : "2021-11-18",
+        "category" : "Income",
+        "amount" : 1000,
+        "description" : ""
+},
+{
+
+        "date" : "2021-11-12",
+        "category" : "Vehicle",
+        "amount" : 60,
+        "description" : "Maintence: Oil change"
+},
+{
+        
+        "date" : "2021-11-09",
+        "category" : "Vehicle",
+        "amount" : 29.02,
+        "description" : "Fuel"
+        
+}
+]
+
+
+
