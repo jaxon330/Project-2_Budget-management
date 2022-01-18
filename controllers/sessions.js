@@ -13,7 +13,7 @@ router.get('/register', (req, res) => {
 
 router.post('/register', async (req, res, next) => {
     try {
-        if (req.body.password === req.body.verifyPassword) {
+        if (req.body.password === req.body.verifyPassword && req.body.password !== '') {
             const desireUsername = req.body.username
             const userExists = await User.findOne({ username: desireUsername})
             if (userExists) {
