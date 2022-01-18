@@ -17,6 +17,8 @@ add a new expense, find, edit and delete existing expense from the list. And als
 * Bootstrap
 * Node.js
 * Express
+* EJS
+* Bcrypt
 * MongoDB
 * Mongoose
 
@@ -27,9 +29,10 @@ First of all I started from setting up an express to make all CRUD work. Once I 
 
 ## UNSOLVED PROBLEMS/STRETCH GOALS
 
-* For some reason after rendering the date shows a day behind in the browser. Only to converting to ISO format, it shows correct date.
+* For some reason after rendering the date shows a day behind in the browser. Only to converting to ISODate format, it shows correct date.
 
 ## INSTALLATION INSTRUCTIONS
+* clone the repository into a local file
 
 * npm install
  
@@ -37,7 +40,7 @@ First of all I started from setting up an express to make all CRUD work. Once I 
 
 * run nodemon (to start the server)
 
-* in your browser url enter http://localhost:3000/expenses
+* in your browser url enter http://localhost:3000/expenses and enjoy
 
 ### MVP
 * As a user, I want to see all my expenses on one list
