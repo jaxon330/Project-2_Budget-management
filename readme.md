@@ -1,4 +1,4 @@
-<!-- About Project -->
+
 <!-- ABOUT THE PROJECT -->
 ## Budget Management
 
@@ -31,9 +31,13 @@ First of all I started from setting up an express to make all CRUD work. Once I 
 
 ## INSTALLATION INSTRUCTIONS
 
-* clone the repository into a local file
-* 
-* open the index.html file and enjoy
+* npm install
+ 
+* run node db/seeds.js (to add data to the database)
+
+* run nodemon (to start the server)
+
+* in your browser url enter http://localhost:3000/expenses
 
 ### MVP
 * As a user, I want to see all my expenses on one list
