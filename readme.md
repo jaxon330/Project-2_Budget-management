@@ -1,11 +1,11 @@
 <!-- About Project -->
 <!-- ABOUT THE PROJECT -->
-## Budget Managment
+## Budget Management
 
 
 
 ## Introduction
-The Pesonal Expense Recorder App helps to record and categorize, monitor and control expenses. With it's user-friendly interface users can easily 
+The Budget Management App helps to record and categorize, monitor and control expenses. With it's user-friendly interface users can easily 
 add a new expense, find, edit and delete existing expense from the list. And also this app has filter which categorize expenses by date.
 
 ## TECHNOLOGY USED
@@ -36,32 +36,53 @@ First of all I started from setting up an express to make all CRUD work. Once I 
 * open the index.html file and enjoy
 
 ### MVP
-As a user, I want to see all my expenses on one list
-As a user, I want to be able to add, edit and delete an item in the list
-As a user, I want to see my total expense, income and balance seperately on home page
+* As a user, I want to see all my expenses on one list
+* As a user, I want to be able to add, edit and delete an item in the list
+* As a user, I want to see my total expense, income and balance seperately on home page
 
 
 ## Instructions
-<p float="left">
-  <img src="/images/screenshoots/login-page.jpg"  />
-  <img src="/images/screenshoots/register-page.jpg"  /> 
-  <img src="/images/screenshoots/home-page.jpg"  />
-</p>
+#### To use the app, log in, or if new user create an account
+<table>
+<tr>
+   <td><img src="/public/images/screenshoots/login-page.jpg" /></td>
+  <td><img src="/public/images/screenshoots/register-page.jpg" /> </td>
 
-#### Simon will give the first signal. Repeat the signal by clicking the same color lens.               
-<p float="left">
-  <img src="/images/screenshoots/add-new-record.jpg"  />
-  <img src="/images/screenshoots/added-new-record.jpg"  /> 
-  <img src="/images/screenshoots/show-record.jpg"  />
-    <img src="/images/screenshoots/edit-page.jpg"  />
-</p>
+</tr>
+</table>
+
+
+#### Once logged in, you're redirected to the homepage. Start adding an expense by clicking the new button        
+<table>
+<tr>
+  <td><img src="/public/images/screenshoots/home-page.jpg"  /></td>
+      <td><img src="/public/images/screenshoots/add-new-record.jpg" /></td>
+</tr>
+</table>
+
+#### Added expense will be displayed on the homepage. Click on an expense for more details and functions like editing and deleting
+
+<table>
+<tr>
+  <td><img src="/public/images/screenshoots/added-new record.jpg" /> </td>
+  <td><img src="/public/images/screenshoots/show-record.jpg" /></td>
+</tr>
+</table>
 
 ## Wireframes
-<p float="left">
-  <img src="/images/wireframes/homepage.jpg"  />
-  <img src="/images/wireframes/homepage2.jpg"  /> 
-  <img src="/images/wireframes/show-page.jpg"  />
-    <img src="/images/wireframes/add-page.jpg"  />
-</p>
+<table>
+<tr>
+  <td><img src="/public/images/wireframes/homepage.jpg"  /></td>
+  <td><img src="/public/images/wireframes/homepage2.jpg" /> </td>
+    </tr>
+</table>
+
+<table>
+<tr>
+  <td><img src="/public/images/wireframes/show-page.jpg" /></td>
+    <td>  <img src="/public/images/wireframes/add-page.jpg" /></td>
+    </tr>
+</table>
+
 
 
