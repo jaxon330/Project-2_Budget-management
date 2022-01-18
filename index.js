@@ -1,7 +1,6 @@
 // DEPENDENCIES
 require('dotenv').config()
 const express = require('express')
-const { PORT,   SESSION_SECRET } = process.env
 const expressEjsLayouts = require('express-ejs-layouts')
 const session = require('express-session')
 const ExpenseTracker = require('./models/expenses')
@@ -12,6 +11,7 @@ const moment = require('moment')
 const momentTimeZone = require('moment-timezone')
 // CONFIGURATION
 const app = express()
+const { PORT,   SESSION_SECRET } = process.env
 const methodOverride = require('method-override')
 
 app.use(express.static('public'))
