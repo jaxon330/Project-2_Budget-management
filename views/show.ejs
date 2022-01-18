@@ -1,42 +1,138 @@
+<%- include('edit.ejs', {expense: expense }) %>
 
-<div class="container">
-    <h1 class="addAndEdit">Record detail</h1>
-    <form action="/expenses/<%= expense.id %>?_method=PUT " method="post">
-        <!-- Date -->
-        <div class="form-group">
-            <label for="date">Date</label>
-            <p class="input"><%= expense.date.toISOString().split('T')[0] %> %></p>
+<!-- SHow record modal window -->
+<div class="modal fade" id="showRecord-<%= expense.id %>" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLongTitle">Show Record</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="container">
+                    <form action="/expenses/<%= expense.id %>?_method=PUT " method="post">
+                        <!-- Date -->
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <p class="input"><%= moment(expense.date).tz('Asia/Urumqi').format('MM/DD/YYYY')  %></p>
+                        </div>
+                        <!-- Category -->
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <p class="input"><%= expense.category %></p>
+
+                        </div>
+
+
+                        <!-- Amount -->
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <p class="input">$<%= expense.amount %></p>
+                        </div>
+
+
+                        <!-- Description -->
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <p class="input"><%= expense.description %></p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <!-- Back button -->
+                            <button type="button" class=" btn btn-info" data-dismiss="modal" aria-label="Close">
+                                Back
+                            </button>
+                            <!-- Edit button -->
+                            <button class="btn btn-warning" type="button" data-dismiss="modal" class="btn btn-primery"
+                                data-toggle="modal" data-target="#editRecord-<%= expense.id %>"
+                                href="#lost">Edit</button>
+                            <!-- Delete button -->
+                            <form class="form d-inline" action="/expenses/<%= expense.id %>?_method=DELETE "
+                                method="post">
+                                <a href="/expenses"><button class="btn btn-danger" type="submit">Remove</button></a>
+                            </form>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
         </div>
-        <!-- Category -->
-        <div class="form-group">
-            <label for="category">Category</label>
-            <p class="input"><%= expense.category %></p>
-
-        </div>
-
-        
-        <!-- Amount -->
-        <div class="form-group">
-            <label for="amount">Amount</label>
-            <p class="input">$<%= expense.amount %></p>
-        </div>
-
-
-        <!-- Description -->
-        <div class="form-group">
-            <label for="description">Description</label>
-            <p class="input"><%= expense.description %></p>
-        </div>
-
-        <a href="/expenses"><button class="btn btn-info" type="button">Back</button></a>
-        <a class="btn btn-warning" href="/expenses/<%= expense.id %>/edit ">Manage</a>
-        <!-- Delete button -->
-        <form class="form d-inline" action="/expenses/<%= expense.id %>?_method=DELETE " method="post">
-            <a href="/expenses"><button class="btn btn-danger" type="submit">Remove</button></a>
-        </form>
-    </form>
+    </div>
 </div>
 
 
 
+<!-- Edit record modal window -->
+<div class="modal fade" id="editRecord-<%= expense.id %>" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLongTitle">Edit</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <form action="/expenses/<%= expense.id %>?_method=PUT " method="post">
+                        <!-- Date -->
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" class="form-control" id="date" name="date" value="<%= expense.date %>">
+                        </div>
+                        <!-- Category -->
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select class="form-control custom-select" id="category" name="category">
+                                <option value="" disabled selected><%= expense.category %></option>
+                                <option value="Income">Income</option>
+                                <option value="Housing">Housing</option>
+                                <option value="Food & Drinks">Food & Drinks</option>
+                                <option value="Transportation">Transportation</option>
+                                <option value="Vehicle">Vehicle</option>
+                                <option value="Shopping">Shopping</option>
+                                <option value="Life & Family ">Life & Family</option>
+                                <option value="Communication">Communication</option>
+                                <option value="Financial expenses">Financial expenses</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
 
+
+                        <!-- Amount -->
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="number" class="form-control" id="amount" name="amount"
+                                placeholder="$ <%= expense.amount %>" step="0.01" min="0">
+                        </div>
+
+
+                        <!-- Description -->
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" name="description" id="description"
+                                placeholder="<%= expense.description %>" rows="4"></textarea>
+                        </div>
+
+                        <!-- Show button -->
+                        <button class="btn btn-info" type="button" data-dismiss="modal" data-toggle="modal"
+                            data-target="#showRecord-<%= expense.id %>">Back</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                    </form>
+                </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>

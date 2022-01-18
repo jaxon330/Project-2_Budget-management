@@ -5,6 +5,12 @@ const ExpenseTracker = require('../models/expenses')
 const seeds = require('../db/expensesSeeds.json')
 const { json } = require('express/lib/response')
 
+const authRequired = (req, res, next) => {
+    if (req.session.loggedIn) {
+        next()
+    } 
+}
+
 let totalExpenses = 0
 let totalIncomes = 0
 let balance = 0
@@ -20,7 +26,7 @@ let balance = 0
 // })
 
 // Index route
-router.get('/', (req, res) => {
+router.get('/', authRequired, (req, res) => {
     ExpenseTracker.find({
         owner: req.session._id
     }, (err, data) => {
@@ -51,12 +57,17 @@ router.get('/', (req, res) => {
 })
 
 // new route
-router.get('/new', (req, res) => {
+router.get('/new', authRequired, (req, res) => {
     res.render('new')
 })
 
+// Demo route
+router.get('/demo', (req, res) => {
+    res.render('index', {expenses})
+})
+
 // Create route
-router.post('/', (req, res) => {
+router.post('/', authRequired, (req, res) => {
     req.body.owner = req.session._id
     ExpenseTracker.create(req.body, (err, data) => {
         console.log(data);
@@ -65,7 +76,7 @@ router.post('/', (req, res) => {
 })
 
 // Search route
-router.post('/search', (req, res) => {
+router.post('/search', authRequired, (req, res) => {
     req.body.owner = req.session._id
     ExpenseTracker.find({}, (err, data) => {
         // total income
@@ -115,8 +126,9 @@ router.get('/:id', (req, res) => {
 })
 
 
+
 // Delete route
-router.delete('/:id', (req, res) => {
+router.delete('/:id',  (req, res) => {
     ExpenseTracker.findByIdAndRemove(req.params.id, (err, data) => {
         res.redirect('/expenses')
         console.log('item was deleted')
@@ -129,6 +141,7 @@ router.put('/:id', (req, res) => {
     ExpenseTracker.findByIdAndUpdate(req.params.id, req.body, {
         new: true
     }, (err, updatedItem) => {
+        console.log(updatedItem);
         res.redirect('/expenses')
     })
 })
@@ -140,13 +153,6 @@ router.get('/:id/edit', (req, res) => {
         })
     })
 })
-
-
-
- 
-    //  db.expenses.aggregate([
-    //      {$project: {date: {$month: '$date'}}}, {$match: {date: 12}}
-    //  ]).pretty()
 
 
 module.exports = router

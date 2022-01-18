@@ -5,19 +5,76 @@
     let totalExpenses = 0
     let totalIncomes = 0
     let balance = 0
+
+
+    const authRequired = (req, res, next) => {
+        if (req.session.loggedIn) {
+            next()
+        } 
+        
+    }
+
+
+        /* ----------------------------------Filter by current date and week------------------------------------- */
+
+        // router.get('/filter/:day', (req, res) => {
+
+        //     const num = req.params.day
+        //     if (num === 1) {
+        //         document.getElementById('24h').style.backgroundColor = 'red';
+        //     }
+        //     req.body.owner = req.session._id
+    
+        //         ExpenseTracker.find({
+        //                 date: {
+        //                     $gte: new Date(new Date() - parseInt(num) * 60 * 60 * 24 * 1000).toISOString().split('T')[0]
+        //                 },
+        //                 owner: req.body.owner
+        //             }, (err, data) => {
+        //                             // total income
+        //         totalIncomes = data?.filter((item) => item.category === 'Income').reduce((acc, item) => {
+        //             return acc + item.amount
+        //         }, 0).toFixed(2);
+    
+        //         // total Expenses
+        //         totalExpenses = data?.filter((item) => item.category !== 'Income').reduce((acc, item) => {
+        //             return acc + item.amount
+        //         }, 0).toFixed(2);
+    
+        //         // Balance
+        //         balance = (totalIncomes - totalExpenses).toFixed(2);
+        //                 res.render('index', {
+        //                     expenses: data,
+        //                     incomes: totalIncomes,
+        //                     totalExpenses: totalExpenses,
+        //                     balance: balance
+        //                 })
+        //             })
+        //             .sort({
+        //                 date: -1
+        //             })
+            
+        // })
+
+
+
     /* ----------------------------------Filter by current date and week------------------------------------- */
 
-    router.get('/filter/:day', (req, res) => {
+    router.get('/filter/:day', authRequired, (req, res) => {
 
         const num = req.params.day
         if (num === 1) {
             document.getElementById('24h').style.backgroundColor = 'red';
         }
         req.body.owner = req.session._id
-        ExpenseTracker.find({
-            owner: req.body.owner
-        }, (err, data) => {
-            // total income
+
+            ExpenseTracker.find({
+                    date: {
+                        $gte: new Date(new Date() - parseInt(num) * 60 * 60 * 24 * 1000).toISOString().split('T')[0]
+                    },
+                    owner: req.body.owner
+                }, (err, data) => {
+                                // total income
             totalIncomes = data?.filter((item) => item.category === 'Income').reduce((acc, item) => {
                 return acc + item.amount
             }, 0).toFixed(2);
@@ -29,12 +86,6 @@
 
             // Balance
             balance = (totalIncomes - totalExpenses).toFixed(2);
-            ExpenseTracker.find({
-                    date: {
-                        $gte: new Date(new Date() - parseInt(num) * 60 * 60 * 24 * 1000).toISOString().split('T')[0]
-                    },
-                    owner: req.body.owner
-                }, (err, data) => {
                     res.render('index', {
                         expenses: data,
                         incomes: totalIncomes,
@@ -45,7 +96,7 @@
                 .sort({
                     date: -1
                 })
-        })
+        
     })
 
 
@@ -53,24 +104,9 @@
 
     /* ----------------------------------Filter monthly ------------------------------------- */
 
-    router.get('/month/:number', (req, res) => {
+    router.get('/month/:number', authRequired, (req, res) => {
         let month = req.params.number
         req.body.owner = req.session._id
-        ExpenseTracker.find({
-            owner: req.body.owner
-        }, (err, data) => {
-            // total income
-            totalIncomes = data?.filter((item) => item.category === 'Income').reduce((acc, item) => {
-                return acc + item.amount
-            }, 0).toFixed(2);
-
-            // total Expenses
-            totalExpenses = data?.filter((item) => item.category !== 'Income').reduce((acc, item) => {
-                return acc + item.amount
-            }, 0).toFixed(2);
-
-            // Balance
-            balance = (totalIncomes - totalExpenses).toFixed(2);
 
             ExpenseTracker.aggregate([{
                         $project: {
@@ -90,30 +126,7 @@
 
 
                     (err, data) => {
-                        res.render('index', {
-                            expenses: data,
-                            incomes: totalIncomes,
-                            totalExpenses: totalExpenses,
-                            balance: balance
-                        })
-                    })
-                .sort({
-                    date: -1
-                })
-        })
-    })
-
-
-
-    /* ----------------------------------Filter yearly ------------------------------------- */
-
-    router.get('/year/:year', (req, res) => {
-        let year = req.params.year
-        req.body.owner = req.session._id
-        ExpenseTracker.find({
-            owner: req.body.owner
-        }, (err, data) => {
-            // total income
+                                    // total income
             totalIncomes = data?.filter((item) => item.category === 'Income').reduce((acc, item) => {
                 return acc + item.amount
             }, 0).toFixed(2);
@@ -125,9 +138,26 @@
 
             // Balance
             balance = (totalIncomes - totalExpenses).toFixed(2);
+                        res.render('index', {
+                            expenses: data,
+                            incomes: totalIncomes,
+                            totalExpenses: totalExpenses,
+                            balance: balance
+                        })
+                    })
+                .sort({
+                    date: -1
+                })
+      
+    })
 
-            //  const dbDate = data.date.toISOString()
-            //  const formattedDate = ISODate(dbDate)
+
+
+    /* ----------------------------------Filter yearly ------------------------------------- */
+
+    router.get('/year/:year', authRequired, (req, res) => {
+        let year = req.params.year
+        req.body.owner = req.session._id
 
             ExpenseTracker.aggregate([{
                         $project: {
@@ -147,6 +177,19 @@
 
 
                     (err, data) => {
+                                    // total income
+            totalIncomes = data?.filter((item) => item.category === 'Income').reduce((acc, item) => {
+                return acc + item.amount
+            }, 0).toFixed(2);
+
+            // total Expenses
+            totalExpenses = data?.filter((item) => item.category !== 'Income').reduce((acc, item) => {
+                return acc + item.amount
+            }, 0).toFixed(2);
+
+            // Balance
+            balance = (totalIncomes - totalExpenses).toFixed(2);
+
                         res.render('index', {
                             expenses: data,
                             incomes: totalIncomes,
@@ -157,7 +200,7 @@
                 .sort({
                     date: -1
                 })
-        })
+       
     })
 
 

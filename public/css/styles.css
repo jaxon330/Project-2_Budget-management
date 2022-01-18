@@ -2,38 +2,69 @@ body {
     margin: 0;
     padding: 0;
     background-color: #93B5C6;
-    height: 100vh;
+
 }
 
-.totalBudget, .filterByPeriod {
-    background-color: #F8F0DF;
+.totalBudget {
+   
+    background-color: white;
+}
+
+.filterContainer {
+    background-color: white;
+    border-color: red;
+}
+
+.filterLinkTag {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    font-weight: bold;
+    border-color: red;
 }
 
 .filterColumn {
-    
+    border-color: #007bff;
     cursor: pointer;
+    color: #007bff;
 }
+
 .active, .filterColumn:hover {
     background-color: #D6D2C4;
 
 }
 
-.table-hover {
+.dropdown-menu {
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+
+/* table */
+.tableBackground {
+    
     background-color: #FEF9EF;
 }
 
-.filterColumn, .table-hover a {
+.tableHeader {
+    z-index: 1;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+
+    overflow: auto;
+    }
+    .table-wrapper-scroll-y {
+    display: block;
+    }
+
+
+
+/* .filterColumn, .table-hover p {
     font-size: 1.3rem;
-}
+} */
 
-.horizontalLine {
-    background-color: #D6D2C4;
-}
-
-.menu-scroll {
-    overflow-y:auto;
-    max-height: 800px;
-  }
 
 
 
@@ -55,14 +86,6 @@ font-weight: bold;
 
 }
 
-label {
-    color: #F8F0DF;
-}
-
-.addAndEdit, .recordDetail {
-    color: #F0E5CF;
-    padding-top: 25px;
-}
 
 .flashMessage {
     color: red;
@@ -87,6 +110,10 @@ label {
 }
 #login .loginContainer #login-row #login-column #login-box #login-form #register-link {
   margin-top: -85px;
+}
+
+.sessionBackground {
+    background-image: url('https://cdn.pixabay.com/photo/2015/01/07/16/37/wood-591631_960_720.jpg');
 }
 
 

@@ -62,6 +62,7 @@ router.post('/login', async (req, res, nest) => {
             
         } else {
             req.session.message = 'Invalid username or password'
+            res.redirect('/session/login')
         }
     } catch (err) {
         next(err)

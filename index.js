@@ -9,6 +9,7 @@ const expenseController = require('./controllers/expenseController')
 const sessionsController = require('./controllers/sessions')
 const filterController = require('./controllers/filterController')
 const moment = require('moment')
+const momentTimeZone = require('moment-timezone')
 // CONFIGURATION
 const app = express()
 const methodOverride = require('method-override')
@@ -53,14 +54,22 @@ app.use((req, res, next) => {
     req.session.message = ""
     next()
 })
- app.use('/expenses', authRequired, expenseController)
+
+// middleware for moment.js
+app.use((req, res, next) => {
+    res.locals.moment = require('moment')
+    res.locals.momentTimeZone = require('moment-timezone')
+    next()
+})
+
+ app.use('/expenses', expenseController)
  app.use('/session', sessionsController)
- app.use('/expenses', authRequired, filterController)
+ app.use('/expenses', filterController)
 
 // app.get('/', (req, res) => {
 //     res.send('Hello')
 // })
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('Server is running on port ' + PORT);
 })
