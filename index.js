@@ -62,9 +62,9 @@ app.use((req, res, next) => {
     next()
 })
 
- app.use('/expenses', expenseController)
+ app.use('/expenses', authRequired, expenseController)
  app.use('/session', sessionsController)
- app.use('/expenses', filterController)
+ app.use('/expenses', authRequired, filterController)
 
 // app.get('/', (req, res) => {
 //     res.send('Hello')

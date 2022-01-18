@@ -1,10 +1,11 @@
 <!-- About Project -->
 <!-- ABOUT THE PROJECT -->
-## Personal Expense Recorder
-![press-to-start](https://user-images.githubusercontent.com/86989396/142721784-3a52300f-ef64-4b70-8fdf-6817ae1759bf.jpg)
+## Budget Managment
+
+
 
 ## Introduction
-The Pesonal Expense Recorder App helps to record and categorize expenses. With it's user-friendly interface users can easily 
+The Pesonal Expense Recorder App helps to record and categorize, monitor and control expenses. With it's user-friendly interface users can easily 
 add a new expense, find, edit and delete existing expense from the list. And also this app has filter which categorize expenses by date.
 
 ## TECHNOLOGY USED
@@ -21,12 +22,12 @@ add a new expense, find, edit and delete existing expense from the list. And als
 
 ## APPROACH
 
-First of all I started from setting up an express to make all CRUD worked. Once I had all CRUD routes set up I jumped into Bootstap and ejs and started designing an app
+First of all I started from setting up an express to make all CRUD work. Once I had all CRUD routes set up I jumped into Bootstap and ejs and started designing the app
 
 
 ## UNSOLVED PROBLEMS/STRETCH GOALS
 
-* For some reason after rendering the date shows one day behind in the browser. Only to converting to ISO format, it shows correct date.
+* For some reason after rendering the date shows a day behind in the browser. Only to converting to ISO format, it shows correct date.
 
 ## INSTALLATION INSTRUCTIONS
 
@@ -41,55 +42,26 @@ As a user, I want to see my total expense, income and balance seperately on home
 
 
 ## Instructions
-![press-to-start](https://user-images.githubusercontent.com/86989396/142721784-3a52300f-ef64-4b70-8fdf-6817ae1759bf.jpg)
+<p float="left">
+  <img src="/images/screenshoots/login-page.jpg"  />
+  <img src="/images/screenshoots/register-page.jpg"  /> 
+  <img src="/images/screenshoots/home-page.jpg"  />
+</p>
 
 #### Simon will give the first signal. Repeat the signal by clicking the same color lens.               
-![game-started](https://user-images.githubusercontent.com/86989396/142721819-9192e825-32c3-4617-9da0-90292efef34c.jpg)
+<p float="left">
+  <img src="/images/screenshoots/add-new-record.jpg"  />
+  <img src="/images/screenshoots/added-new-record.jpg"  /> 
+  <img src="/images/screenshoots/show-record.jpg"  />
+    <img src="/images/screenshoots/edit-page.jpg"  />
+</p>
 
-#### Simon will dublicate color as you advance to next level. Repeat the colors. Continue playing as long as you can repeat each sequence of signals correctly.
-![image](https://user-images.githubusercontent.com/86989396/142723718-bdd8b461-a597-4016-bead-a02d07192f1e.png)
-
-#### If you fail to repeat a sequence exactly, Simon responds with a 'BAZZ' sound. This means you've lost. Game Over!
-![game-over](https://user-images.githubusercontent.com/86989396/142721824-c1ac8e78-3100-4ba5-80bb-732f2f5a17a9.jpg)
-
-<!--------------------------------- Project Proposal ----------------------------------------------->
-
-### Personal Expenses Tracker
-
-This app helps to control and monitor our spending and budget
-
-### MVP
-As a user, I want to see all my expenses on one list
-As a user, I want to be able to add, edit and delete an item in the list
-As a user, I want to see my total expense, income and balance seperately on home page
+## Wireframes
+<p float="left">
+  <img src="/images/wireframes/homepage.jpg"  />
+  <img src="/images/wireframes/homepage2.jpg"  /> 
+  <img src="/images/wireframes/show-page.jpg"  />
+    <img src="/images/wireframes/add-page.jpg"  />
+</p>
 
 
-### Stretch Goals
-As a user I want to be able to categorize my expenses into folders. Example folders: Grocery, Transport, Food & Eat, Family, Medicine etc.
-As a user I want to be able to categorize for weekly, monthly and yearly
-As a user I want to have my bydget list secured with username and password
-
-
-
-### Front-end
-I am planning to use EJS and Bootstrap
-
-### List of Mongoose models and their properties
-expenseSchema = {
-date: Date,
-category: {type: String, required: true},
-description: {type: String, required: true},
-amount: {type: Number, required: true}
-}
-
-
-### List of Routes
-Show route
-Post route
-Edit route
-Delete route
-
-### User stories
-
-
-### Wireframes

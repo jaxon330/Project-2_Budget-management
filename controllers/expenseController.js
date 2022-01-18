@@ -5,28 +5,14 @@ const ExpenseTracker = require('../models/expenses')
 const seeds = require('../db/expensesSeeds.json')
 const { json } = require('express/lib/response')
 
-const authRequired = (req, res, next) => {
-    if (req.session.loggedIn) {
-        next()
-    } 
-}
 
 let totalExpenses = 0
 let totalIncomes = 0
 let balance = 0
 
-// ExpenseTracker.insertMany(seeds, (err, data) => {
-//     if(err) {console.log(err);}
-//     console.log(data)
-// })
-
-// ExpenseTracker.deleteMany({}, (err, data) => {
-//     if(err) {console.log(err);}
-//     console.log(data)
-// })
 
 // Index route
-router.get('/', authRequired, (req, res) => {
+router.get('/', (req, res) => {
     ExpenseTracker.find({
         owner: req.session._id
     }, (err, data) => {
@@ -57,7 +43,7 @@ router.get('/', authRequired, (req, res) => {
 })
 
 // new route
-router.get('/new', authRequired, (req, res) => {
+router.get('/new',(req, res) => {
     res.render('new')
 })
 
@@ -67,16 +53,16 @@ router.get('/demo', (req, res) => {
 })
 
 // Create route
-router.post('/', authRequired, (req, res) => {
+router.post('/', (req, res) => {
     req.body.owner = req.session._id
     ExpenseTracker.create(req.body, (err, data) => {
-        console.log(data);
+        console.log('new record was added');
         res.redirect('/expenses')
     })
 })
 
 // Search route
-router.post('/search', authRequired, (req, res) => {
+router.post('/search', (req, res) => {
     req.body.owner = req.session._id
     ExpenseTracker.find({}, (err, data) => {
         // total income
@@ -129,9 +115,9 @@ router.get('/:id', (req, res) => {
 
 // Delete route
 router.delete('/:id',  (req, res) => {
-    ExpenseTracker.findByIdAndRemove(req.params.id, (err, data) => {
+    ExpenseTracker.findByIdAndRemove(req.params.id, req.body, (err, data) => {
         res.redirect('/expenses')
-        console.log('item was deleted')
+        console.log('record was deleted')
 
     })
 })
@@ -141,7 +127,7 @@ router.put('/:id', (req, res) => {
     ExpenseTracker.findByIdAndUpdate(req.params.id, req.body, {
         new: true
     }, (err, updatedItem) => {
-        console.log(updatedItem);
+        console.log('record was changed');
         res.redirect('/expenses')
     })
 })

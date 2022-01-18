@@ -1,12 +1,12 @@
 <%- include('../partials/header.ejs') %>
 
-<div class=" table-wrapper-scroll-y my-custom-scrollbar h-100 mb-2 mx-0  w-100">
-    <div class=" h-100 border rounded sessionBackground">
+<div class=" container-scroll-y my-custom-scrollbar h-100  w-100">
+    <div class=" h-100 bg-dark border rounded sessionBackground">
         <div id="login">
             <div class="container loginContainer">
                 <div id="login-row" class="row justify-content-center align-items-center">
                     <div id="login-column" class="col-md-6">
-                        <div id="login-box" class="col-md-12">
+                        <div id="login-box" class="col-md-6">
                             <form id="login-form" class="form" action="/session/login" method="post">
                                 <h3 class="text-center text-info">Log In</h3>
                                 <% if(message) { %>

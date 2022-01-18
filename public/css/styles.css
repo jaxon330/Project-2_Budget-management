@@ -103,7 +103,7 @@ font-weight: bold;
   max-width: 600px;
   height: 360px;
   border: 1px solid #9C9C9C;
-  background-color: #EAEAEA;
+  background-color: #444b52;
 }
 #login .loginContainer #login-row #login-column #login-box #login-form {
   padding: 20px;
@@ -114,6 +114,7 @@ font-weight: bold;
 
 .sessionBackground {
     background-image: url('https://cdn.pixabay.com/photo/2015/01/07/16/37/wood-591631_960_720.jpg');
+    background-size: cover;
 }
 
 
@@ -123,7 +124,7 @@ font-weight: bold;
     max-width: 600px;
     height: 460px;
     border: 1px solid #9C9C9C;
-    background-color: #EAEAEA;
+    background-color: #444b52;
   }
   #register .registerContainer #register-row #register-column #register-box #register-form {
     padding: 20px;

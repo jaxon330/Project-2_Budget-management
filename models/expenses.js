@@ -4,9 +4,9 @@ const DateOnly = require('mongoose-dateonly')(mongoose);
 const Schema = mongoose.Schema
 
 const expensesSchema = new Schema({
-    date: Date,
+    date: {type: Date, required: true},
     category: String,
-    amount: Number,
+    amount: {type: Number, min: 0, required: true},
     description: String,
     owner: {
         type: mongoose.Schema.Types.ObjectId,
