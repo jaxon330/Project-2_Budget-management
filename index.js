@@ -71,5 +71,5 @@ app.use((req, res, next) => {
 // })
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log('Server is running on port ' + PORT);
+    console.log('Server is running on port 3000');
 })
