@@ -50,8 +50,6 @@
     })
 
 
-
-
     /* ----------------------------------Filter monthly ------------------------------------- */
 
     router.get('/month/:number', (req, res) => {
@@ -64,18 +62,19 @@
                             date: 1,
                             amount: 1,
                             description: 1,
+                            owner: 1,
                             newDate: {
                                 $month: '$date'
                             }
                         }
                     }, {
                         $match: {
-                            newDate: parseInt(month)
+                            newDate: parseInt(month)                      
                         }
                     }],
 
-
                     (err, data) => {
+                        data = data.filter(item => item.owner == req.session._id) 
                                     // total income
             totalIncomes = data?.filter((item) => item.category === 'Income').reduce((acc, item) => {
                 return acc + item.amount
@@ -125,8 +124,8 @@
                         }
                     }],
 
-
                     (err, data) => {
+                        data = data.filter(item => item.owner == req.session._id) 
                                     // total income
             totalIncomes = data?.filter((item) => item.category === 'Income').reduce((acc, item) => {
                 return acc + item.amount
