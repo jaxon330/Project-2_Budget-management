@@ -78,16 +78,18 @@ router.post('/search', (req, res) => {
         // Balance
         balance = (totalIncomes - totalExpenses).toFixed(2)
         ExpenseTracker.find({
-            category: {
-                $regex: req.body.search
-            },
+            // category: {
+            //     $regex: req.body.search
+            // }, 
+            
             owner: req.body.owner
         }, (err, data) => {
-
+            const userInput = req.body.search.toLowerCase()
+            const searchResult =  data.filter((item) => item.description.toLowerCase() === userInput || item.category.toLowerCase() === userInput)
             // console.log(data);
             res.render('index', {
-                expenses: data?.map(item => {
-                    item.date = new Date(item.date).toLocaleDateString()
+                expenses: searchResult?.map(item => {
+                   item.date = new Date(item.date).toLocaleDateString()
                     return item
                 }),
                 // username: req.session.username,
