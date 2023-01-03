@@ -10,10 +10,10 @@
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
 
             </ul>
-            <% if (username) { %>
-            <form class="d-flex mr-auto mt-2 w-50 mt-lg-0" action="/expenses/search" method="POST">
-                <div class="input-group ">
-                    <input type="text" class="form-control" placeholder="Search" name="search">
+             <% if (username) { %>  
+            <form class="d-flex mr-auto mt-2 w-50 mt-lg-0" action="/expenses/search" method="POST" name="searchForm">
+                <div class="input-group " name="divSearch">
+                    <input type="text" class="form-control" placeholder="Search" name="search" onsubmit=<% return validateForm() %> id="search">
                     <button type="submit" class="btn btn-secondary"><i class="fa fa-search"
                             aria-hidden="true"></i></i></button>
                 </div>
@@ -41,6 +41,15 @@
                     
                     <a href="/session/login" class="nav-link">Register</a>
                 </div> -->
+                <script>
+                    function validateForm() {  
+                         let x = document.forms['searchForm']['divSearch']['search'].value  
+                         if (x == '' || x == null) {  
+                             alert('Must be filled out')  
+                             return false  
+                         } 
+                     }   
+                    </script>
                 <% } %>
     </nav>
 </div>

@@ -77,10 +77,9 @@ router.post('/search', (req, res) => {
 
         // Balance
         balance = (totalIncomes - totalExpenses).toFixed(2)
+        
         ExpenseTracker.find({
-            // category: {
-            //     $regex: req.body.search
-            // }, 
+
             
             owner: req.body.owner
         }, (err, data) => {
@@ -88,7 +87,7 @@ router.post('/search', (req, res) => {
             const searchResult =  data.filter((item) => item.description.toLowerCase() === userInput || item.category.toLowerCase() === userInput)
             // console.log(data);
             res.render('index', {
-                expenses: searchResult?.map(item => {
+                expenses: searchResult ?.map(item => {
                    item.date = new Date(item.date).toLocaleDateString()
                     return item
                 }),

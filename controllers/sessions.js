@@ -44,7 +44,7 @@ router.get('/login', (req, res) => {
     res.render('sessions/login.ejs')
 })
 
-router.post('/login', async (req, res, nest) => {
+router.post('/login', async (req, res, next) => {
     try { 
         const userToLogin = await User.findOne({username: req.body.username})
         if (userToLogin) {
