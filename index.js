@@ -66,9 +66,9 @@ app.use((req, res, next) => {
  app.use('/session', sessionsController)
  app.use('/expenses', authRequired, filterController)
 
-// app.get('/', (req, res) => {
-//     res.send('Hello')
-// })
+app.get('/', (req, res) => {
+    res.send('Hello')
+})
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('Server is running on port 3000');

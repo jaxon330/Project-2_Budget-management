@@ -13,7 +13,7 @@
              <% if (username) { %>  
             <form class="d-flex mr-auto mt-2 w-50 mt-lg-0" action="/expenses/search" method="POST" name="searchForm">
                 <div class="input-group " name="divSearch">
-                    <input type="text" class="form-control" placeholder="Search" name="search" onsubmit=<% return validateForm() %> id="search">
+                    <input type="text" class="form-control" placeholder="Search" name="search" onsubmit=validateForm()  id="search">
                     <button type="submit" class="btn btn-secondary"><i class="fa fa-search"
                             aria-hidden="true"></i></i></button>
                 </div>
